@@ -3,13 +3,17 @@ class Form{
         this.rocket = createSprite(650,450,0,0);
         this.rocket.visible = false;
         
-        this.playbutton = createButton("Start");
+        this.playbutton = createButton("! Start the Game !");
         this.playbutton.position(width/2 + 75, height/2)
 
         this.nameinput = createInput("Enter your name: ")
         this.info = createButton("Information")
         this.settings = createButton("How to play?")
         this.welcome = createElement("h1");
+        this.welcome.html("Welcome to space rocket designing game")
+        this.welcome.position(width/2 - 400, height/2-300)
+        this.welcome.style('color' , 'lightgreen')
+        this.welcome.style('font-size', '50px' )
         this.goBack = createButton("Go back");
         
         this.slv = createButton("Select SLV");
@@ -28,6 +32,16 @@ class Form{
         this.launch.hide();
 
         this.pre,this.design,this.mainmenu;
+
+        this.slvImg = createButton("View Image")
+        this.aslvImg = createButton("View Image")
+        this.pslvImg = createButton("View Image")
+        this.gslvImg = createButton("View Image")
+
+        this.slvImg.hide();
+        this.aslvImg.hide();
+        this.pslvImg.hide();
+        this.gslvImg.hide();
     }
     hide(){
         // this.mainmenu.hide();
@@ -49,10 +63,36 @@ class Form{
         this.settings.show();
         this.info.show();
     }
-    display(){
- 
-        
+    show_select(){
+        this.slvImg.show();
+        this.aslvImg.show();
+        this.pslvImg.show();
+        this.gslvImg.show(); 
 
+        this.slvImg.position(75,500);
+        this.aslvImg.position(450, 545);
+        this.pslvImg.position(750, 545);
+        this.gslvImg.position(1100, 500);
+
+        this.gslvImg.mousePressed(()=>{
+            bg = gslvInfo
+            this.goBack.position(width- 195, 25)
+            this.slvImg.hide();
+            this.aslvImg.hide();
+            this.pslvImg.hide();
+            this.gslvImg.hide();
+        })
+        this.pslvImg.mousePressed(()=>{
+            bg = pslvInfo
+
+            this.goBack.position(width- 195, 25)
+            this.slvImg.hide();
+            this.aslvImg.hide();
+            this.pslvImg.hide();
+            this.gslvImg.hide();
+        })
+    }
+    display(){
         this.nameinput.position(width/2-240, height/2)
         //Information button
         this.info.position(width- 185, 75)//width- 195, height- 75
@@ -62,9 +102,10 @@ class Form{
         // Mouse Pressing functions
         this.info.mousePressed(()=>{
             bg = back2;
-            this.goBack.position(width - 195, height - 75)
+            this.goBack.position(width - 150, height - 30)
             this.goBack.show();
             this.hide();
+            this.show_select();
         })
         this.settings.mousePressed(()=>{
             bg = htp;
@@ -75,7 +116,10 @@ class Form{
         this.goBack.mousePressed(()=>{
             bg = back1;
             this.goBack.hide();
-            
+            this.slvImg.hide();
+        this.aslvImg.hide();
+        this.pslvImg.hide();
+        this.gslvImg.hide();
             this.show();
         })
         this.playbutton.mousePressed(()=>{
@@ -133,7 +177,7 @@ class Form{
             this.settings.show();
             this.info.show();
             this.playbutton.show();
-            this.playbutton.position(width/2, height/2)
+            this.playbutton.position(width/2 - 100, height/2)
         })
         this.select();
     }
@@ -145,6 +189,9 @@ class Form{
             this.hide_select();
             this.launch.hide();
             this.rocket.visible = false;
+            // this.rocket.x = 650
+            // this.rocket.y = 450
+
         })
         this.slv.mousePressed(()=>{
             bg = launchpad1
@@ -155,6 +202,8 @@ class Form{
             this.rocket.x = 675
             this.rocket.addImage(slv);
             this.rocket.scale = 2.75;
+            // this.rocket.x = 650
+            // this.rocket.y = 450
         })
         this.aslv.mousePressed(()=>{
             bg = launchpad1
@@ -165,6 +214,8 @@ class Form{
             this.rocket.x = 675
             this.rocket.addImage(aslv);
             this.rocket.scale = 2.5;
+            // this.rocket.x = 650
+            // this.rocket.y = 450
         })
         this.pslv.mousePressed(()=>{
             bg = launchpad1
@@ -175,6 +226,8 @@ class Form{
             this.rocket.x = 675
             this.rocket.addImage(pslv);
             this.rocket.scale = 1.4
+            // this.rocket.x = 650
+            // this.rocket.y = 450
         })
         this.gslv.mousePressed(()=>{
             bg = launchpad1
@@ -185,6 +238,8 @@ class Form{
             this.rocket.x = 675
             this.rocket.addImage(gslv);
             this.rocket.scale = 1.4;
+            // this.rocket.x = 650
+            // this.rocket.y = 450
         })
     }
 }

@@ -7,7 +7,6 @@ html, body {
     margin-right:auto;
     margin-left:auto;
   }
-  
   button{
     background-color: rgb(255, 252, 80);
     border: 5px solid rgb(30, 148, 138);
@@ -16,7 +15,8 @@ html, body {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 20px;
+    font-size: 17px;
+    font-family: cursive;
   }
   
   input{
@@ -27,5 +27,6 @@ html, body {
     text-align: center;
     text-decoration: 5;
     display: inline-block;
-    font-size: 20px;
+    font-size: 17px;
+    font-family: cursive;
   }
