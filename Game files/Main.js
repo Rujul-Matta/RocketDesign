@@ -1,6 +1,6 @@
 class Form{
     constructor(){
-        this.rocket = createSprite(650,450,0,0);
+        this.rocket = createSprite(650,450,25,25);
         this.rocket.visible = false;
         
         this.playbutton = createButton("! Start the Game !");
@@ -9,11 +9,6 @@ class Form{
         this.nameinput = createInput("Enter your name: ")
         this.info = createButton("Information")
         this.settings = createButton("How to play?")
-        this.welcome = createElement("h1");
-        this.welcome.html("Welcome to space rocket designing game")
-        this.welcome.position(width/2 - 400, height/2-300)
-        this.welcome.style('color' , 'lightgreen')
-        this.welcome.style('font-size', '50px' )
         this.goBack = createButton("Go back");
         
         this.slv = createButton("Select SLV");
@@ -42,6 +37,18 @@ class Form{
         this.aslvImg.hide();
         this.pslvImg.hide();
         this.gslvImg.hide();
+
+        this.welcome = createElement("h1");
+        this.welcome.html("Welcome to space rocket designing game")
+        this.welcome.position(width/2 - 400, height/2-300)
+        this.welcome.style('color' , 'lightgreen')
+        this.welcome.style('font-size', '50px' )
+
+        this.launchButton_1 = createButton("! Prepare for Launch !")
+        this.launchButton_2 = createButton("! Launch !")
+
+        this.launchButton_1.hide();
+        this.launchButton_2.hide();
     }
     hide(){
         // this.mainmenu.hide();
@@ -115,6 +122,7 @@ class Form{
         })
         this.goBack.mousePressed(()=>{
             bg = back1;
+            this.welcome.show();
             this.goBack.hide();
             this.slvImg.hide();
         this.aslvImg.hide();
@@ -161,6 +169,7 @@ class Form{
             this.gslv.position(1000, 5);
         })
         this.mainmenu.mousePressed(()=>{
+            this.welcome.show();
             bg = back1;
             this.mainmenu.hide();
             this.pre.hide()
@@ -204,6 +213,7 @@ class Form{
             this.rocket.scale = 2.75;
             // this.rocket.x = 650
             // this.rocket.y = 450
+            this.launching();
         })
         this.aslv.mousePressed(()=>{
             bg = launchpad1
@@ -216,6 +226,8 @@ class Form{
             this.rocket.scale = 2.5;
             // this.rocket.x = 650
             // this.rocket.y = 450
+
+            this.launching();
         })
         this.pslv.mousePressed(()=>{
             bg = launchpad1
@@ -241,5 +253,24 @@ class Form{
             // this.rocket.x = 650
             // this.rocket.y = 450
         })
+    }
+
+    launching(){
+        
+        this.launchButton_1.show();
+        this.launchButton_2.show();
+
+        this.launchButton_1.position(25, height/2)
+        this.launchButton_2.position(25, height/2 - 100)
+        this.launchButton_1.mousePressed(()=>{
+            z = 1
+        })
+        this.launchButton_2.mousePressed(()=>{
+            this.rocket.velocityY = velocity;
+            z = 2
+        })
+
+        camera.position.y = this.rocket.y
+        camera.position.x = displayWidth/2
     }
 }
