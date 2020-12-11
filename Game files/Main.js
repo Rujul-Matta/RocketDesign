@@ -79,7 +79,7 @@ class Form{
             this.show();
         })
         this.playbutton.mousePressed(()=>{
-            this.nameinput.hide();
+            this.nameinput.remove();
             this.playbutton.hide();
             this.goBack.hide();
             this.level1();
