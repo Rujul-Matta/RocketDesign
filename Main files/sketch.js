@@ -41,9 +41,6 @@ function setup() {
     canvas = createCanvas(displayWidth-16,displayHeight-143);
     engine = Engine.create();
     world = engine.world;
-    
-    //Creating buttons
-    // bg = back1;
     bg = extra;
     playButton = new Form();
     
@@ -51,9 +48,6 @@ function setup() {
 function draw() {
     background(bg)
     Engine.update(engine)
-
-    // textSize(40);
-    // text(mouseX + "," + mouseY, width/2, height/2)
     
     if(z == 1){
         velocity -= 1
@@ -65,7 +59,14 @@ function draw() {
         playButton.launchButton_2.hide();
         z = 3
     }
-    console.log("Y = "+ playButton.ground.y)
+    if(velocity> 150){
+        velocity = 15
+    }
+    playButton.launchButton_2.mousePressed(()=>{
+        playButton.ground.velocityY = -(velocity)
+        z = 2
+    })
+    console.log("velocity = "+ velocity)
     drawSprites();
     playButton.display();
     
