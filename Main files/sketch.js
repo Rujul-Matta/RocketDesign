@@ -19,12 +19,12 @@ var velocity = 0, score,z = 0
 var complete;
 
 function preload() {
-    extra = loadImage('images/image.png')
+    extra = loadImage('images/start.png')
     back1 = loadImage('images/background.jpg')
     back2 = loadImage('images/bg1.png')
     back3 = loadImage('images/Table of rockets.png')
     htp = loadImage('images/How to play.png')
-    launchpad1 = loadImage('images/123.jpg')
+    launchpad1 = loadImage('images/rocket background.jpg')
 
     slv = loadImage('images/SLV.jpg')
     aslv = loadImage('images/ASLV.jpg')
@@ -33,8 +33,6 @@ function preload() {
 
     gslvInfo = loadImage('images/GSLV.png')
     pslvInfo = loadImage('images/PSLV.png')
-
-    ani = loadImage('images/2(1).png')
     complete = loadImage('images/complete.png')
 }
 function setup() {
