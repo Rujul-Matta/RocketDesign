@@ -1,7 +1,12 @@
 class Form{
     constructor(){
+        this.ground = createSprite(width/2, -height - 175, width);
+        this.ground.visible = false;
+
         this.rocket = createSprite(650,450,25,25);
         this.rocket.visible = false;
+
+        
         
         this.playbutton = createButton("! Start the Game !");
         this.playbutton.position(width/2 + 75, height/2)
@@ -131,6 +136,7 @@ class Form{
             this.show();
         })
         this.playbutton.mousePressed(()=>{
+            bg = back1;
             this.nameinput.remove();
             this.playbutton.hide();
             this.goBack.hide();
@@ -169,8 +175,17 @@ class Form{
             this.gslv.position(1000, 5);
         })
         this.mainmenu.mousePressed(()=>{
+            velocity = 0
+            z = 0
+
+            this.launchButton_1.hide();
+            this.launchButton_2.hide();
+            this.ground.y = -height - 175
+            this.ground.visible = false;
+            this.ground.velocityY = 0;
+
             this.welcome.show();
-            bg = back1;
+            bg = extra;
             this.mainmenu.hide();
             this.pre.hide()
             this.design.hide();
@@ -191,7 +206,17 @@ class Form{
         this.select();
     }
     select(){
+        // camera.position.y = this.rocket.y
         this.launch.mousePressed(()=>{
+            
+            this.launchButton_1.hide();
+            this.launchButton_2.hide();
+            velocity = 0
+            this.welcome.show();
+            z = 0
+            this.ground.y = -height - 175
+            this.ground.visible = false;
+            this.ground.velocityY = 0;
             this.pre.show();
             this.design.show();
             bg = back1;
@@ -203,9 +228,8 @@ class Form{
 
         })
         this.slv.mousePressed(()=>{
-            bg = launchpad1
+            bg = 0
             this.hide_select();
-
             this.rocket.visible = true;
             this.rocket.y = 300
             this.rocket.x = 675
@@ -214,9 +238,10 @@ class Form{
             // this.rocket.x = 650
             // this.rocket.y = 450
             this.launching();
+            this.moving();
         })
         this.aslv.mousePressed(()=>{
-            bg = launchpad1
+            bg = 0
             this.hide_select();
 
             this.rocket.visible = true;
@@ -228,9 +253,10 @@ class Form{
             // this.rocket.y = 450
 
             this.launching();
+            this.moving();
         })
         this.pslv.mousePressed(()=>{
-            bg = launchpad1
+            bg = 0
             this.hide_select();
 
             this.rocket.visible = true;
@@ -238,11 +264,12 @@ class Form{
             this.rocket.x = 675
             this.rocket.addImage(pslv);
             this.rocket.scale = 1.4
-            // this.rocket.x = 650
-            // this.rocket.y = 450
+
+            this.launching();
+            this.moving();
         })
         this.gslv.mousePressed(()=>{
-            bg = launchpad1
+            bg =0
             this.hide_select();
 
             this.rocket.visible = true;
@@ -250,8 +277,9 @@ class Form{
             this.rocket.x = 675
             this.rocket.addImage(gslv);
             this.rocket.scale = 1.4;
-            // this.rocket.x = 650
-            // this.rocket.y = 450
+
+            this.launching();
+            this.moving();
         })
     }
 
@@ -260,17 +288,21 @@ class Form{
         this.launchButton_1.show();
         this.launchButton_2.show();
 
-        this.launchButton_1.position(25, height/2)
-        this.launchButton_2.position(25, height/2 - 100)
+        this.launchButton_1.position(50, height/2-60)
+        this.launchButton_2.position(50, height/2)
         this.launchButton_1.mousePressed(()=>{
             z = 1
         })
         this.launchButton_2.mousePressed(()=>{
-            this.rocket.velocityY = velocity;
+            this.ground.velocityY = -(velocity)
             z = 2
         })
-
-        camera.position.y = this.rocket.y
-        camera.position.x = displayWidth/2
+    }
+    moving(){
+        //
+        this.ground.visible = true;
+        this.ground.addImage(launchpad1)
+        this.ground.scale = 0.8
+        //
     }
 }

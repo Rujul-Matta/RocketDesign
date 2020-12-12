@@ -10,13 +10,13 @@ var canvas
 
 var playButton;
 var num;
-var bg, bcak1, back2, back3, htp, launchpad1, launchpad2, launchpad3;
+var bg, bcak1, back2, back3, htp, launchpad1, ani;
 var slv, aslv, pslv, gslv;
 var gslvInfo, pslvInfo
 var extra;
 
 var velocity = 0, score,z = 0
-var ground;
+var complete;
 
 function preload() {
     extra = loadImage('images/image.png')
@@ -24,7 +24,7 @@ function preload() {
     back2 = loadImage('images/bg1.png')
     back3 = loadImage('images/Table of rockets.png')
     htp = loadImage('images/How to play.png')
-    launchpad1 = loadImage('images/2.png')
+    launchpad1 = loadImage('images/123.jpg')
 
     slv = loadImage('images/SLV.jpg')
     aslv = loadImage('images/ASLV.jpg')
@@ -34,6 +34,8 @@ function preload() {
     gslvInfo = loadImage('images/GSLV.png')
     pslvInfo = loadImage('images/PSLV.png')
 
+    ani = loadImage('images/2(1).png')
+    complete = loadImage('images/complete.png')
 }
 function setup() {
     canvas = createCanvas(displayWidth-16,displayHeight-143);
@@ -42,23 +44,29 @@ function setup() {
     
     //Creating buttons
     // bg = back1;
-    console.log(displayWidth)
-    console.log(displayHeight)
     bg = extra;
     playButton = new Form();
+    
 }
 function draw() {
     background(bg)
     Engine.update(engine)
 
-    textSize(40);
-    text(mouseX + "," + mouseY, width/2, height/2)
+    // textSize(40);
+    // text(mouseX + "," + mouseY, width/2, height/2)
     
     if(z == 1){
-        velocity -= 2
+        velocity -= 1
     }
-    console.log(velocity)
-    
-    playButton.display();
+    if(playButton.ground.y >= 1500 && z == 2){
+        bg = complete
+        playButton.rocket.visible = false;
+        playButton.launchButton_1.hide();
+        playButton.launchButton_2.hide();
+        z = 3
+    }
+    console.log("Y = "+ playButton.ground.y)
     drawSprites();
+    playButton.display();
+    
 }
