@@ -19,10 +19,20 @@ class Form{
         this.pslv = createButton("Select PSLV");
         this.gslv = createButton("Select GSLV");
 
+        this.slv1 = createButton("Select SLV");
+        this.aslv1 = createButton("Select ASLV");
+        this.pslv1 = createButton("Select PSLV");
+        this.gslv1 = createButton("Select GSLV");
+
         this.slv.hide();
         this.aslv.hide();
         this.pslv.hide();
         this.gslv.hide();
+
+        this.slv1.hide();
+        this.aslv1.hide();
+        this.pslv1.hide();
+        this.gslv1.hide();
         this.goBack.hide();
 
         this.launch = createButton("Go to Designing Area")
@@ -52,6 +62,16 @@ class Form{
 
         this.launchButton_1.hide();
         this.launchButton_2.hide();
+
+        this.r1 = r1
+        this.r2 = r2//createSprite(100,random(200, 300),10,10);
+        this.r3 = r3//createSprite(100,random(400, 500),10,10);
+        this.r4 = r4//createSprite(100,random(600, 650),10,10);
+
+        this.r1.visible = false;
+        this.r2.visible = false;
+        this.r3.visible = false;
+        this.r4.visible = false;
     }
     hide(){
         this.playbutton.hide();
@@ -105,8 +125,7 @@ class Form{
     display(){
         this.nameinput.position(width/2-240, height/2)
         this.info.position(width- 185, 75)
-        // How to play? = settings button 
-        this.settings.position(width- 195, 5)
+        this.settings.position(width- 195, 5)// How to play? = settings button 
         
         this.info.mousePressed(()=>{
             bg = back2;
@@ -138,6 +157,7 @@ class Form{
             this.goBack.hide();
             this.level1();
         })
+        
     }
     level1(){
         this.settings.hide();//How to play?
@@ -152,6 +172,9 @@ class Form{
         this.design = createButton("Design your own rockets !")
         this.design.position(width/2 - 125, height/2)
 
+        this.design.mousePressed(()=>{
+            this.level2();
+        })
         // Launching Pre-Designed Rocktes !!
         this.pre.mousePressed(()=>{
             bg = back3;
@@ -191,6 +214,11 @@ class Form{
             this.aslv.hide();//Buttons
             this.pslv.hide();//Buttons
             this.gslv.hide();//Buttons
+
+            this.slv1.hide();
+        this.aslv1.hide();
+        this.pslv1.hide();
+        this.gslv1.hide();
             this.launch.hide();// Go to designing area button
 
             this.rocket.visible = false;
@@ -221,6 +249,10 @@ class Form{
             this.design.show();
             
             this.rocket.visible = false;
+            this.slv1.hide();
+        this.aslv1.hide();
+        this.pslv1.hide();
+        this.gslv1.hide();
             this.hide_select();
         })
         this.slv.mousePressed(()=>{
@@ -299,5 +331,56 @@ class Form{
         this.ground.addImage(launchpad1)
         this.ground.scale = 0.8
         //
+    }
+
+    level2(){
+        bg = 0;
+        this.launch.show();
+
+        this.settings.hide();//How to play?
+        this.info.hide();// Information 
+        this.design.hide();
+        this.pre.hide();
+        this.welcome.hide();
+
+        this.mainmenu.position(width- 220, height-75);
+        this.slv1.position(75, height/2);
+        this.aslv1.position(350, height/2);
+        this.pslv1.position(675, height/2);
+        this.gslv1.position(1000, height/2);
+
+        this.slv1.show();
+        this.aslv1.show();
+        this.pslv1.show();
+        this.gslv1.show(); 
+
+        this.slv1.mousePressed(()=>{
+            this.select_slv();
+        })
+    }
+    select_slv(){
+        this.slv1.hide();
+        this.aslv1.hide();
+        this.pslv1.hide();
+        this.gslv1.hide();
+
+        this.r1.visible = true;
+        this.r2.visible = true;
+        this.r3.visible = true;
+        
+        this.r1.addImage(slv_02);
+        this.r2.addImage(slv_01);
+        this.r3.addImage(slv_03);
+        this.r3.scale = 1.2
+
+        this.ground.visible = true;
+        this.ground.addImage(launchpad1)
+        this.ground.x = width/2 + 200
+        this.ground.scale = 0.8
+
+        this.r1.depth += this.ground.depth
+        this.r2.depth += this.ground.depth
+        this.r3.depth += this.ground.depth
+        
     }
 }
