@@ -24,6 +24,10 @@ var aslv_01 , aslv_02, aslv_03, aslv_04;
 var pslv_01 , pslv_02, pslv_03;
 var gslv_01 , gslv_02, gslv_03, gslv_04;
 var r1, r2, r3, r4;
+
+var ran1, ran2, ran3, ran4;
+var center = 0;
+var m = 0
 function preload() {
     extra = loadImage('images/start.png')
     back1 = loadImage('images/background.jpg')
@@ -66,10 +70,15 @@ function setup() {
     engine = Engine.create();
     world = engine.world;
 
-    r1 = createSprite(100,random(10, 100), 50,50);
-    r2 = createSprite(100,random(200, 300),50,50);
-    r3 = createSprite(100,random(400, 500),50,50);
-    r4 = createSprite(100,random(600, 650),50,50);
+    ran1 = random(10, 100)
+    ran2 = random(200, 300)
+    ran3 = random(400, 500)
+    ran4 = random(600, 650)
+
+    r1 = createSprite(100,ran1, 100,200);
+    r2 = createSprite(100,ran2,200/2,200);
+    r3 = createSprite(100,ran3,200/2,200);
+    r4 = createSprite(100,ran4,200/2,200);
 
     r1.visible = false;
     r2.visible = false;
@@ -101,22 +110,32 @@ function draw() {
         playButton.ground.velocityY = -(velocity)
         z = 2
     })
-    // console.log("velocity = "+ velocity)
+  
     drawSprites();
+    fill(255,0,0)
+    textSize(40);
+    text(mouseX +","+mouseY, width/2,height/2)
     playButton.display();
-    if(mousePressedOver(r1)) {
+
+if(playButton.r1.isTouching(playButton.c1)){ m = 1}
+if(playButton.r2.isTouching(playButton.c2)){ m = 2}
+if(playButton.r3.isTouching(playButton.c3)){ m = 3}
+if(playButton.r4.isTouching(playButton.c4)){ m = 4}
+
+
+    if(mousePressedOver(r1) && m == 0) {
         r1.x = mouseX
         r1.y = mouseY
     }
-    if(mousePressedOver(r2)) {
+     if(mousePressedOver(r2) &&m ==1) {
         r2.x = mouseX
         r2.y = mouseY
     }
-    if(mousePressedOver(r3)) {
+     if(mousePressedOver(r3) && m==2) {
         r3.x = mouseX
         r3.y = mouseY
     }
-    if(mousePressedOver(r4)) {
+     if(mousePressedOver(r4)&&  m == 3) {
         r4.x = mouseX
         r4.y = mouseY
     }

@@ -72,6 +72,26 @@ class Form{
         this.r2.visible = false;
         this.r3.visible = false;
         this.r4.visible = false;
+
+        this.slvGo = createButton("! Go for launch !")
+        this.aslvGo = createButton("! Go for launch !")
+        this.pslvGo = createButton("! Go for launch !")
+        this.gslvGo = createButton("! Go for launch !")
+
+        this.slvGo.hide();
+        this.aslvGo.hide();
+        this.pslvGo.hide();
+        this.gslvGo.hide();
+
+        this.c1 = createSprite(width/2, height/2,15,15);
+        this.c2 = createSprite(width/2, height/2,15,15);
+        this.c3 = createSprite(width/2, height/2,15,15);
+        this.c4 = createSprite(width/2, height/2,15,15);
+
+        this.c1.visible = false;
+        this.c2.visible = false;
+        this.c3.visible = false;
+        this.c4.visible = false;
     }
     hide(){
         this.playbutton.hide();
@@ -141,7 +161,7 @@ class Form{
             this.hide();
         })
         this.goBack.mousePressed(()=>{
-            bg = back1;
+            bg = extra;
             this.welcome.show();
             this.goBack.hide();
             this.slvImg.hide();
@@ -172,7 +192,9 @@ class Form{
         this.design = createButton("Design your own rockets !")
         this.design.position(width/2 - 125, height/2)
 
+        // Launching New rocktes !! 
         this.design.mousePressed(()=>{
+            this.launch.position(width- 500, height-75)
             this.level2();
         })
         // Launching Pre-Designed Rocktes !!
@@ -184,6 +206,8 @@ class Form{
             this.mainmenu.position(width- 220, height-75);
 
             this.launch.show();// Go to designing area button
+            this.launch.position(width- 500, height-75)
+
             this.slv.show(); //Buttons
             this.aslv.show();//Buttons
             this.pslv.show();//Buttons
@@ -194,7 +218,29 @@ class Form{
             this.pslv.position(675, 5);
             this.gslv.position(1000, 5);
         })
+        // Go back to main menu 
         this.mainmenu.mousePressed(()=>{
+            this.slvGo.hide();
+            this.aslvGo.hide();
+            this.pslvGo.hide();
+            this.gslvGo.hide();
+
+            ran1 = random(10, 100)
+            ran2 = random(200, 300)
+            ran3 = random(400, 500)
+            ran4 = random(600, 650)
+
+            r1.y = ran1
+            r2.y = ran2
+            r3.y = ran3
+            r4.y = ran4
+
+            r1.x = random(25,50)
+            r2.x = random(25,50)
+            r3.x = random(25,50)
+            r4.x = random(25,50)
+
+            bg = extra;
             velocity = 0
             z = 0
 
@@ -205,7 +251,6 @@ class Form{
             this.ground.velocityY = 0;
 
             this.welcome.show();
-            bg = extra;
             this.mainmenu.hide();
             this.pre.hide()
             this.design.hide();
@@ -216,12 +261,17 @@ class Form{
             this.gslv.hide();//Buttons
 
             this.slv1.hide();
-        this.aslv1.hide();
-        this.pslv1.hide();
-        this.gslv1.hide();
+            this.aslv1.hide();
+            this.pslv1.hide();
+            this.gslv1.hide();
             this.launch.hide();// Go to designing area button
 
             this.rocket.visible = false;
+
+            this.r1.visible = false;
+            this.r2.visible = false;
+            this.r3.visible = false;
+            this.r4.visible = false;
 
             this.settings.show();// How to play?
             this.info.show();
@@ -231,15 +281,43 @@ class Form{
         this.select();
     }
     select(){
+        // Going to designing area
         this.launch.mousePressed(()=>{
+            this.slvGo.hide();
+            this.aslvGo.hide();
+            this.pslvGo.hide();
+            this.gslvGo.hide();
+
+            ran1 = random(10, 100)
+            ran2 = random(200, 300)
+            ran3 = random(400, 500)
+            ran4 = random(600, 650)
+
+            r1.y = ran1
+            r2.y = ran2
+            r3.y = ran3
+            r4.y = ran4
+
+            r1.x = random(25,50)
+            r2.x = random(25,50)
+            r3.x = random(25,50)
+            r4.x = random(25,50)
+            
             bg = back1;
             this.launchButton_1.hide();
             this.launchButton_2.hide();
             this.launch.hide();
 
+            this.r1.visible = false;
+            this.r2.visible = false;
+            this.r3.visible = false;
+            this.r4.visible = false;
+            
             velocity = 0
             z = 0
             
+            this.mainmenu.position(width- 230, 5)
+
             this.ground.y = -height - 175
             this.ground.visible = false;
             this.ground.velocityY = 0;
@@ -250,9 +328,10 @@ class Form{
             
             this.rocket.visible = false;
             this.slv1.hide();
-        this.aslv1.hide();
-        this.pslv1.hide();
-        this.gslv1.hide();
+            this.aslv1.hide();
+            this.pslv1.hide();
+            this.gslv1.hide();
+
             this.hide_select();
         })
         this.slv.mousePressed(()=>{
@@ -327,6 +406,8 @@ class Form{
     }
     moving(){
         //
+        this.ground.x = width/2 
+        this.ground.y = -height - 175
         this.ground.visible = true;
         this.ground.addImage(launchpad1)
         this.ground.scale = 0.8
@@ -356,7 +437,21 @@ class Form{
 
         this.slv1.mousePressed(()=>{
             this.select_slv();
+            center = 1
         })
+        this.aslv1.mousePressed(()=>{
+            this.select_aslv();
+            center = 2
+        })
+        this.pslv1.mousePressed(()=>{
+            this.select_pslv();
+            center = 3
+        })
+        this.gslv1.mousePressed(()=>{
+            this.select_gslv();
+            center = 4
+        })
+
     }
     select_slv(){
         this.slv1.hide();
@@ -364,14 +459,22 @@ class Form{
         this.pslv1.hide();
         this.gslv1.hide();
 
+        this.slvGo.show();
+        this.slvGo.position(300, height-100);
+
+        this.launch.position(width - 265, height-75)
+        this.mainmenu.position(width - 250, height-150)
         this.r1.visible = true;
         this.r2.visible = true;
         this.r3.visible = true;
         
-        this.r1.addImage(slv_02);
-        this.r2.addImage(slv_01);
+        this.r1.addImage(slv_01);
+        this.r2.addImage(slv_02);
         this.r3.addImage(slv_03);
-        this.r3.scale = 1.2
+
+        this.r1.scale = 0.7
+        this.r2.scale = 0.9
+        this.r3.scale = 1.3
 
         this.ground.visible = true;
         this.ground.addImage(launchpad1)
@@ -382,5 +485,230 @@ class Form{
         this.r2.depth += this.ground.depth
         this.r3.depth += this.ground.depth
         
+        this.c1.visible = true;
+        this.c2.visible = true;
+        this.c3.visible = true;
+        this.c4.visible = false;
+
+        this.c1.x = 900
+        this.c1.y = 15
+
+        this.c2.x = 900
+        this.c2.y = 325
+
+        this.c3.x = 910
+        this.c3.y = 570
+
+        this.c4.x = 900
+        this.c4.y = 350
+
+        this.slvGo.mousePressed(()=>{
+            this.select_slvGo();
+        })
+        
+    }
+    select_aslv(){
+        this.slv1.hide();
+        this.aslv1.hide();
+        this.pslv1.hide();
+        this.gslv1.hide();
+
+        this.aslvGo.show();
+        this.aslvGo.position(300, height-100);
+
+        this.launch.position(width - 265, height-75)
+        this.mainmenu.position(width - 250, height-150)
+
+        this.ground.visible = true;
+        this.ground.addImage(launchpad1)
+        this.ground.x = width/2 + 200
+        this.ground.scale = 0.8
+
+        this.r1.depth += this.ground.depth
+        this.r2.depth += this.ground.depth
+        this.r3.depth += this.ground.depth
+        this.r4.depth += this.ground.depth
+
+        this.r1.visible = true
+        this.r2.visible = true
+        this.r3.visible = true
+        this.r4.visible = true
+
+        this.r1.addImage(aslv_01)
+        this.r2.addImage(aslv_02)
+        this.r3.addImage(aslv_03)
+        this.r4.addImage(aslv_04)
+
+        this.r1.scale = 1.1;
+        this.r2.scale = 1.2;
+        this.r3.scale = 1.1;
+        this.r4.scale = 1.1;
+
+        this.aslvGo.mousePressed(()=>{
+            this.select_aslvGo();
+        })
+       
+    }
+    select_pslv(){
+        this.slv1.hide();
+        this.aslv1.hide();
+        this.pslv1.hide();
+        this.gslv1.hide();
+
+        this.pslvGo.show();
+        this.pslvGo.position(300, height-100);
+
+        this.launch.position(width - 265, height-75)
+        this.mainmenu.position(width - 250, height-150)
+
+        this.ground.visible = true;
+        this.ground.addImage(launchpad1)
+        this.ground.x = width/2 + 200
+        this.ground.scale = 0.8
+
+        this.r1.depth += this.ground.depth
+        this.r2.depth += this.ground.depth
+        this.r3.depth += this.ground.depth
+        this.r4.depth += this.ground.depth
+
+        this.r1.visible = true
+        this.r2.visible = true
+        this.r3.visible = true
+        // this.r4.visible = true
+
+        this.r1.addImage(pslv_01)
+        this.r2.addImage(pslv_02)
+        this.r3.addImage(pslv_03)
+
+        this.r1.scale = 0.5
+        this.r2.scale = 0.5
+        this.r3.scale = 0.7
+        
+        this.pslvGo.mousePressed(()=>{
+            this.select_pslvGo();
+        })
+       
+    }
+    select_gslv(){
+        this.slv1.hide();
+        this.aslv1.hide();
+        this.pslv1.hide();
+        this.gslv1.hide();
+
+        this.gslvGo.show();
+        this.gslvGo.position(300, height-100);
+
+        this.launch.position(width - 265, height-75)
+        this.mainmenu.position(width - 250, height-150)
+
+        this.ground.visible = true;
+        this.ground.addImage(launchpad1)
+        this.ground.x = width/2 + 200
+        this.ground.scale = 0.8
+
+        this.r1.depth += this.ground.depth
+        this.r2.depth += this.ground.depth
+        this.r3.depth += this.ground.depth
+        this.r4.depth += this.ground.depth
+
+        this.r1.visible = true
+        this.r2.visible = true
+        this.r3.visible = true
+        this.r4.visible = true
+
+        this.r1.addImage(gslv_01)
+        this.r2.addImage(gslv_02)
+        this.r3.addImage(gslv_03)
+        this.r4.addImage(gslv_04)
+
+        this.r1.scale = 0.7;
+        this.r2.scale = 0.7;
+        this.r3.scale = 0.7;
+        this.r4.scale = 0.7;
+
+        this.gslvGo.mousePressed(()=>{
+            this.select_gslvGo();
+        })
+    }
+
+    select_slvGo(){
+        bg = 0
+        this.hide_select();
+
+        this.rocket.visible = true;
+        this.rocket.y = 300
+        this.rocket.x = 675
+        this.rocket.addImage(slv);
+        this.rocket.scale = 2.75;
+
+        this.launching();
+        this.moving();
+
+        this.r1.visible = false;
+        this.r2.visible = false;
+        this.r3.visible = false;
+        this.r4.visible = false;
+
+        this.slvGo.hide();
+    }
+    select_aslvGo(){
+            bg = 0
+            this.hide_select();
+
+            this.rocket.visible = true;
+            this.rocket.y = 300
+            this.rocket.x = 675
+            this.rocket.addImage(aslv);
+            this.rocket.scale = 2.5;
+
+            this.launching();
+            this.moving();
+
+            this.r1.visible = false;
+            this.r2.visible = false;
+            this.r3.visible = false;
+            this.r4.visible = false;
+
+        this.aslvGo.hide();
+    }
+    select_pslvGo(){
+        bg = 0
+        this.hide_select();
+
+        this.rocket.visible = true;
+        this.rocket.y = 300
+        this.rocket.x = 675
+        this.rocket.addImage(pslv);
+        this.rocket.scale = 1.4
+
+        this.launching();
+        this.moving();
+
+        this.r1.visible = false;
+        this.r2.visible = false;
+        this.r3.visible = false;
+        this.r4.visible = false;
+
+        this.pslvGo.hide();
+    }
+    select_gslvGo(){
+        bg = 0
+        this.hide_select();
+
+        this.rocket.visible = true;
+        this.rocket.y = 300
+        this.rocket.x = 675
+        this.rocket.addImage(gslv);
+        this.rocket.scale = 1.4;
+
+        this.launching();
+        this.moving();
+
+        this.r1.visible = false;
+        this.r2.visible = false;
+        this.r3.visible = false;
+        this.r4.visible = false;
+
+        this.gslvGo.hide();
     }
 }
